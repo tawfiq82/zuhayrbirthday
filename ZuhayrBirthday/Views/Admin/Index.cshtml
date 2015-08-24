@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model IList<ZuhayrBirthday.Models.Guest>
+
+<h2>Guest List</h2>
+
+<table class="table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <td>Phone No</td>
+            <td>Name</td>
+            <td>Adult</td>
+            <td>Children</td>
+            <td>Infant</td>
+            <td>Total</td>
+            <td>Confirmed Adult</td>
+            <td>Confirmed Children</td>
+            <td>Confirmed Infant</td>
+            <td>Confirmed Total</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class='@(item.IsConfirmed ? "confirmed" : "")'>
+                <td>@item.PhoneId</td>
+                <td>@item.Name</td>
+                <td>@item.AdultCount</td>
+                <td>@item.ChildrenCount</td>
+                <td>@item.InfantCount</td>
+                <td>@(item.AdultCount + item.ChildrenCount + item.InfantCount)</td>
+                <td>@item.ConfirmedAdultCount</td>
+                <td>@item.ConfirmedChildrenCount</td>
+                <td>@item.ConfirmedInfantCount</td>
+                <td>@(item.ConfirmedAdultCount + item.ConfirmedChildrenCount + item.ConfirmedInfantCount)</td>
+            </tr>
+        }
+    </tbody>
+    <tbody>
+        <tr class="sum-total">
+            <td></td>
+            <td></td>
+            <td colspan="3">Total Invited</td>
+            <td class="total">@Model.Select(x => (x.AdultCount + x.ChildrenCount)).Sum() (@Model.Sum(x=>x.InfantCount))</td>
+            <td colspan="3">Total Confirmed</td>
+            <td class="total">@Model.Select(x => (x.ConfirmedAdultCount + x.ConfirmedChildrenCount)).Sum() (@Model.Sum(x => x.ConfirmedInfantCount))</td>
+        </tr>
+    </tbody>
+</table>

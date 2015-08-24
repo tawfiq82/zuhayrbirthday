@@ -1,0 +1,176 @@
+﻿body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #fafec3;
+    /*background-image:url('Zayb Invite.jpg');*/
+    color: #146696;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+textarea {
+    max-width: 280px;
+}
+
+table tr td {
+    padding: 5px;
+    text-align: center;
+}
+
+table tr.confirmed {
+    background-color: #00ff90;
+}
+
+table tr.sum-total {
+    font-size: 16px;
+    background-color: #f3fe63;
+}
+
+table tr td.total {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #e7ef2d;
+}
+
+select {
+    width: 150px !important;
+}
+
+.guest-item {
+    padding-top: 3px;
+}
+
+label {
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+.birthdayCird {
+    width: 100%;
+    height: 400px;
+    background-image: url(../Content/birthday-card.jpg);
+    background-repeat: no-repeat;
+}
+
+.header {
+    width: 100%;
+    padding-bottom: 30px;
+    background-image: url('Zayb Invite.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.header1 {
+    text-align: center !important;
+    color: #ffcc00;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    text-shadow: 1px 0 0 #146696, -1px 0 0 #146696, 0 1px 0 #146696, 0 -1px 0 #146696, 1px 1px #146696, -1px -1px 0 #146696, 1px -1px 0 #146696, -1px 1px 0 #146696;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #146696;
+}
+
+.header2 {
+    margin-top: -5px;
+    text-align: center !important;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+    font-weight: bold;
+    /*text-shadow: 0.1em 0 0 #cc9e24, -0.1em 0 0 #cc9e24, 0 0.1em 0 #cc9e24, 0 0.1em 0 #cc9e24, 0.1em 0.1em #cc9e24, -0.1em -0.1em 0 #cc9e24, 0.1em -0.1em 0 #cc9e24, -0.1em 0.1em 0 #cc9e24;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #cc9e24;*/
+}
+
+.header3 {
+    margin-top: -5px;
+    text-align: center !important;
+    color: #ffcc00;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    text-shadow: 1px 0 0 #146696, -1px 0 0 #146696, 0 1px 0 #146696, 0 -1px 0 #146696, 1px 1px #146696, -1px -1px 0 #146696, 1px -1px 0 #146696, -1px 1px 0 #146696;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #146696;
+}
+
+.details {
+    text-align: center !important;
+    padding-bottom: 2px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.details-theme {
+    font-size: 16px;
+    color: #cc9e24;
+}
+
+#confirmed-guest {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#not-confirmed-guest {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#valid-guest {
+}
+
+#confirmed-adult-count, #confirmed-children-count, #confirmed-infant-count {
+    color: #cc9e24;
+}
+
+.btn {
+    background-color: #146696;
+    color: #feea9e !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#valid-guest, #invalid-guest {
+    height: 390px;
+    padding: 2px;
+    margin-top: 10px;
+}
+
+.info {
+    font-size: 16px;
+}
+
+#gmap_canvas {
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+a {
+    font-size: 16px;
+}
+
+.direction {
+    width:32px;
+    height:32px;
+}

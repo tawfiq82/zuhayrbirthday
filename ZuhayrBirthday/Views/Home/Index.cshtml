@@ -1,0 +1,141 @@
+﻿@model ZuhayrBirthday.Models.Guest
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="header">
+    <div class="header1">Calling all Minions!</div>
+    <div class="header2">Join Us to Celebrate</div>
+    <div class="header3">Zuhayr's 1st Birthday</div>
+</div>
+
+@if (Model == null)
+{
+    <div id="invalid-guest" class="">
+        Unfotunately you are not in our guest list. Please contact Tawfiq or Zarifa.
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-xs-12 col-sm-12  col-md-6">
+            <div id="valid-guest" class="row">
+                <div class="col-xs-12">
+                    <div class="details">Yaarl Function Centre</div>
+                    <div class="details">221A Wentworth Ave</div>
+                    <div class="details">Pendle Hill, NSW-2145</div>
+                    <div class="details">Date: 12-September-2015</div>
+                    <div class="details">Time: 7:30 PM</div>
+                    <div class="details">THEME</div>
+                    <div class="details details-theme">Costume Party For Kids</div>
+                </div>
+                <div id="confirmed-guest" class="col-xs-12" style='@(Model.IsConfirmed ? "" : "display:none")'>
+                    <div class="info">You have confirmed your guest count.</div>
+                    @if (Model.AdultCount > 0)
+                    {
+                        <div class="guest-item"><label>Adults:</label><span id="confirmed-adult-count">@Model.ConfirmedAdultCount</span></div>
+                    }
+                    @if (Model.ChildrenCount > 0)
+                    {
+                        <div class="guest-item"><label>Children:</label><span id="confirmed-children-count">@Model.ConfirmedChildrenCount</span> </div>
+                    }
+                    @if (Model.InfantCount > 0)
+                    {
+                        <div class="guest-item"><label>Infants:</label> <span id="confirmed-infant-count">@Model.ConfirmedInfantCount</span> </div>
+                    }
+
+                    <div class="info" style="font-size:12px;"> If you want to change it again please select the edit button.</div>
+                    <input type="button" value="Edit" class="btn" onclick="onclickEdit();" />
+                </div>
+                <div id="not-confirmed-guest" class="col-xs-12" style='@(Model.IsConfirmed ? "display:none" : "")'>
+                    <div id="not-confirmed-guest-msg"></div>
+                    <div class="info">Please confirm your guest count</div>
+                    @if (Model.AdultCount > 0)
+                    {
+                        <div class="row guest-item">
+                            <label class="col-xs-12 col-sm-6">Adults</label>
+                            <div class="col-xs-12 col-sm-6">
+                                <select id="adult-count">
+                                    <option value="0">Please Select...</option>
+                                    @for (int i = 0; i <= Model.AdultCount; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ChildrenCount > 0)
+                    {
+                        <div class="row guest-item">
+                            <label class="col-xs-12 col-sm-6">Children (2-11)</label>
+                            <div class="col-xs-12 col-sm-6">
+                                <select id="children-count">
+                                    <option value="0">Please Select...</option>
+                                    @for (int i = 0; i <= Model.ChildrenCount; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.InfantCount > 0)
+                    {
+                        <div class="row guest-item">
+                            <label class="col-xs-12 col-sm-6">Infants (Under 2)</label>
+                            <div class="col-xs-12 col-sm-6">
+                                <select id="infant-count">
+                                    <option value="0">Please Select...</option>
+                                    @for (int i = 0; i <= Model.InfantCount; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+                    }
+                    <input type="button" value="Confirm" class="btn" onclick="onclickSave()" style="margin-bottom:5px;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <a href="http://maps.google.com/maps?saddr=&daddr=221A Wentworth Ave, NSW 2145" target="_black"><div id="gmap_canvas" style="height:370px"></div></a>
+            <a href="http://maps.google.com/maps?saddr=&daddr=221A Wentworth Ave, NSW 2145" target="_black">
+                <img  class="direction" src="~/Content/pointer.png" />Get Direction</a>
+        </div> 
+    </div>
+}
+
+
+@if (@Model != null)
+{
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        function init_map() {
+            var myOptions = {
+                zoom: 14,
+                center: new google.maps.LatLng(-33.801371, 150.95729499999993),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+            marker = new google.maps.Marker({
+                map: map,
+                position: new google.maps.LatLng(-33.801371, 150.95729499999993)
+            });
+            infowindow = new google.maps.InfoWindow({
+                content: "<b>Yaarl Function Centre</b><br/>221A Wentworth Ave<br/> Pendle Hill, NSW 2145"
+            });
+            google.maps.event.addListener(marker, "click", function () {
+                infowindow.open(map, marker);
+            });
+            infowindow.open(map, marker);
+        }
+        google.maps.event.addDomListener(window, 'load', init_map);
+    </script>
+}
+<script>
+    var guestJson = @Html.Raw(ViewBag.Json);
+    var saveUrl = '@Html.Raw(Url.Action("UpdateGuest","Home"))';
+</script>
