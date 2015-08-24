@@ -7,9 +7,9 @@
     <AdultCount>2</AdultCount>
     <ChildrenCount>0</ChildrenCount>
     <InfantCount>1</InfantCount>
-    <ConfirmedAdultCount>0</ConfirmedAdultCount>
+    <ConfirmedAdultCount>2</ConfirmedAdultCount>
     <ConfirmedChildrenCount>0</ConfirmedChildrenCount>
-    <ConfirmedInfantCount>0</ConfirmedInfantCount>
+    <ConfirmedInfantCount>1</ConfirmedInfantCount>
   </Guest>
   <Guest>
     <PhoneId>3</PhoneId>

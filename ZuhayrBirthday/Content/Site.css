@@ -152,7 +152,7 @@ label {
 }
 
 #valid-guest, #invalid-guest {
-    height: 390px;
+    /*height: 390px;*/
     padding: 2px;
     margin-top: 10px;
 }
