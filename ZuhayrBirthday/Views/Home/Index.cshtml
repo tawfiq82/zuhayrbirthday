@@ -30,7 +30,7 @@ else
                     <div class="details details-theme">Costume Party For Kids</div>
                 </div>
                 <div id="confirmed-guest" class="col-xs-12" style='@(Model.IsConfirmed ? "" : "display:none")'>
-                    <div class="info">Great! Cant wait to see you.</div>
+                    <div class="info">Great! Can’t wait to see you!</div>
                     @if (Model.AdultCount > 0)
                     {
                         <div class="guest-item"><label>Adults:</label><span id="confirmed-adult-count">@Model.ConfirmedAdultCount</span></div>
@@ -44,12 +44,12 @@ else
                         <div class="guest-item"><label>Infants:</label> <span id="confirmed-infant-count">@Model.ConfirmedInfantCount</span> </div>
                     }
 
-                    <div class="info" style="font-size:12px;">If you did any mistake you can change by clicking edit.</div>
+                    <div class="info" style="font-size:12px;">Made a mistake? Click Edit to change how many are coming.</div>
                     <input type="button" value="Edit" class="btn" onclick="onclickEdit();" />
                 </div>
                 <div id="not-confirmed-guest" class="col-xs-12" style='@(Model.IsConfirmed ? "display:none" : "")'>
                     <div id="not-confirmed-guest-msg"></div>
-                    <div class="info">How many are you coming?</div>
+                    <div class="info">How many people are coming?</div>
                     @if (Model.AdultCount > 0)
                     {
                         <div class="row guest-item">
