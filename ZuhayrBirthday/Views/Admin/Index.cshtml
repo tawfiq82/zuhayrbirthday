@@ -26,7 +26,7 @@
         @foreach (var item in Model)
         {
             <tr class='@(item.IsConfirmed ? "confirmed" : "")'>
-                <td>@counter++</td>
+                <td>@counter</td>
                 <td>@item.PhoneId</td>
                 <td>@item.Name</td>
                 <td>@item.AdultCount</td>
@@ -38,6 +38,7 @@
                 <td>@item.ConfirmedInfantCount</td>
                 <td>@(item.ConfirmedAdultCount + item.ConfirmedChildrenCount + item.ConfirmedInfantCount)</td>
             </tr>
+            counter++;
         }
     </tbody>
     <tbody>

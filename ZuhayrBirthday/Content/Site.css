@@ -133,7 +133,8 @@ label {
 #valid-guest {
 }
 
-#confirmed-adult-count, #confirmed-children-count, #confirmed-infant-count {
+#confirmed-adult-count, #confirmed-children-count, #confirmed-infant-count,
+#edit-adult-count, #edit-children-count, #edit-infant-count {
     color: #cc9e24;
 }
 

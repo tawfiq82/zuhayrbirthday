@@ -1,9 +1,8 @@
 ﻿var guestJson = null;
 
 function login() {
-    $('guest-login').hide();
-    $mobileNo = $('mobile-no');
-    guestJson = { PhoneId: $mobileNo.val() };
+    $mobileNo = $('#mobile-no');
+    guestJson = { "PhoneId": $mobileNo.val() };
     $.ajax({
         url: loginUrl,
         data: JSON.stringify(guestJson),
@@ -12,16 +11,18 @@ function login() {
         dataType: 'json',
         success: function (data) {
             if (data.Result == 'Success') {
-                guestJson = data.JsonGuest;
+                guestJson = JSON.parse(data.JsonGuest);
                 if (guestJson.IsConfirmed) {
+                    $('#guest-login').hide();
                     $('#guest-confirmed').show();
-                    $('#confirmed-adult-count').html(guestJson.ConfirmedAdultCount);
-                    $('#confirmed-children-count').html(guestJson.ConfirmedChildrenCount);
-                    $('#confirmed-infant-count').html(guestJson.ConfirmedInfantCount);
+                    _displayConfirmedGuestCount('confirmed');
                 } else {
+                    $('#guest-login').hide();
                     _showForm();
+
                 }
             } else {
+                $('#guest-login').hide();
                 $('#guest-uninvited').show();
             }
         }
@@ -48,9 +49,7 @@ function confirm() {
         success: function (data) {
             if (data.Result == 'Success') {
                 $('#guest-form').hide();
-                $('#edit-adult-count').html(guestJson.ConfirmedAdultCount);
-                $('#edit-children-count').html(guestJson.ConfirmedChildrenCount);
-                $('#edit-infant-count').html(guestJson.ConfirmedInfantCount);
+                _displayConfirmedGuestCount('edit')
                 $('#guest-edit').show();
             } else {
                 $('#not-confirmed-guest-msg').html('There is some error occured while saving. Please try again.');
@@ -59,6 +58,10 @@ function confirm() {
     });
 }
 
+function showLogin() {
+    $('#guest-login').show();
+    $('#guest-uninvited').hide();
+}
 function edit() {
     _showForm();
     $('#guest-edit').hide();
@@ -67,22 +70,23 @@ function edit() {
 
 function _showForm() {
     if (guestJson.AdultCount > 0) {
-        _generateGuestCountDropdown($('#adult-count'), guestJson.AdultCount, guest.ConfirmedAdultCount)
+        _generateGuestCountDropdown($('#adult-count'), guestJson.AdultCount, guestJson.ConfirmedAdultCount)
         $('#form-adult').show();
     }
     else { $('#form-adult').hide(); }
 
     if (guestJson.ChildrenCount > 0) {
-        _generateGuestCountDropdown($('#children-count'), guestJson.ChildrenCount, guest.ConfirmedChildrenCount)
+        _generateGuestCountDropdown($('#children-count'), guestJson.ChildrenCount, guestJson.ConfirmedChildrenCount)
         $('#form-children').show();
     }
     else { $('#form-children').hide(); }
 
     if (guestJson.InfantCount > 0) {
-        _generateGuestCountDropdown($('#infant-count'), guestJson.InfantCount, guest.ConfirmedInfantCount)
+        _generateGuestCountDropdown($('#infant-count'), guestJson.InfantCount, guestJson.ConfirmedInfantCount)
         $('#form-infant').show();
     }
     else { $('#form-infant').hide(); }
+    $('#guest-form').show();
 }
 
 
@@ -93,5 +97,31 @@ function _generateGuestCountDropdown($cntrl, optionCount, selected) {
             value: i,
             text: i
         }));
+    }
+}
+
+function _displayConfirmedGuestCount(prefix) {
+    $adultCount = $('#' + prefix + '-adult-count');
+    if (guestJson.AdultCount > 0) {
+        $adultCount.html(guestJson.ConfirmedAdultCount);
+        $adultCount.parent().show();
+    } else {
+        $adultCount.parent().hide();
+    }
+
+    $childrenCount = $('#' + prefix + '-children-count');
+    if (guestJson.ChildrenCount > 0) {
+        $childrenCount.html(guestJson.ConfirmedChildrenCount);
+        $childrenCount.parent().show();
+    } else {
+        $childrenCount.parent().hide();
+    }
+
+    $infantCount = $('#' + prefix + '-infant-count');
+    if (guestJson.InfantCount > 0) {
+        $infantCount.html(guestJson.ConfirmedInfantCount);
+        $infantCount.parent().show();
+    } else {
+        $infantCount.parent().hide();
     }
 }
