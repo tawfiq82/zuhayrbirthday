@@ -32,18 +32,24 @@ table tr td {
 }
 
 table tr.confirmed {
-    background-color: #00ff90;
+     background-color: #f5ed59;
 }
 
 table tr.sum-total {
     font-size: 16px;
-    background-color: #f3fe63;
+    background-color: #146696;
+    color: #fff;
+}
+
+table tr.sum-all-total {
+    font-weight: bold;
+    background-color: #cc9e24;
+    color: #fff;
 }
 
 table tr td.total {
     font-size: 18px;
     font-weight: bold;
-    background-color: #e7ef2d;
 }
 
 select {

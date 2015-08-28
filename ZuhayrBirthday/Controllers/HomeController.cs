@@ -40,7 +40,9 @@ namespace ZuhayrBirthday.Controllers
 
         public ActionResult Login(Guest guest)
         {
-            Guest jsonGuest = _dbContext.GetGuest(guest.PhoneId);
+            var phoneId = guest.PhoneId;
+            if (!string.IsNullOrEmpty(phoneId)) phoneId = phoneId.Trim();
+            Guest jsonGuest = _dbContext.GetGuest(phoneId);
             if (jsonGuest != null)
             {
                 return Json(new { Result = "Success", JsonGuest = _serializer.Serialize(jsonGuest) }, JsonRequestBehavior.AllowGet);

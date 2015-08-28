@@ -42,16 +42,16 @@
         }
     </tbody>
     <tbody>
-        <tr class="sum-total">
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr class="sum-all-total">
+            <td colspan="3"> Totals</td>
             <td>@Model.Select(x => x.AdultCount).Sum()</td>
             <td>@Model.Select(x => x.ChildrenCount).Sum()</td>
             <td>@Model.Select(x => x.InfantCount).Sum()</td>
+            <td>@Model.Select(x => (x.AdultCount + x.ChildrenCount + x.InfantCount)).Sum()</td>
             <td>@Model.Select(x => x.ConfirmedAdultCount).Sum()</td>
             <td>@Model.Select(x => x.ConfirmedChildrenCount).Sum()</td>
             <td>@Model.Select(x => x.ConfirmedInfantCount).Sum()</td>
+            <td>@Model.Select(x => (x.ConfirmedAdultCount + x.ConfirmedChildrenCount+ x.ConfirmedInfantCount)).Sum()</td>
         </tr>
         <tr class="sum-total">
             <td></td>
