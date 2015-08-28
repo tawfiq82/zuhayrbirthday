@@ -19,26 +19,33 @@ namespace ZuhayrBirthday.Controllers
             _serializer = new JavaScriptSerializer();
         }
 
-        public ActionResult Index(string id = "0")
+        public ActionResult Index()
         {
-            Guest model = _dbContext.GetGuest(id);
-            ViewBag.Json = _serializer.Serialize(model);
-            return View(model);
+            return View();
         }
 
-        public ActionResult UpdateGuest(Guest guest)
+        public ActionResult Confirm(Guest guest)
         {
             var result = "Success";
             try
             {
                 _dbContext.UpdateGuest(guest);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 result = "Error";
             }
             return Json(new { Result = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Login(Guest guest)
+        {
+            Guest jsonGuest = _dbContext.GetGuest(guest.PhoneId);
+            if (jsonGuest != null)
+            {
+                return Json(new { Result = "Success", JsonGuest = _serializer.Serialize(jsonGuest) }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Result = "Error" }, JsonRequestBehavior.AllowGet);
         }
     }
 }
